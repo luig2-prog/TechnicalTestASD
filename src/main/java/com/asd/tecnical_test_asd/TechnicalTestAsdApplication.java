@@ -1,4 +1,4 @@
-package com.asd.TechnicalTestASD;
+package com.asd.tecnical_test_asd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
