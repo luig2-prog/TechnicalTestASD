@@ -26,6 +26,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * @description función encargada de pedir y servir la información de los usuarios registrados en el aplicativo
+     * @author Luis Hernandez
+     * @date(26/12/2022)
+     * @return ResponseEntity
+     * @see RestResponse
+     */
     @GetMapping
     public ResponseEntity<RestResponse> getUsers() {
         List<UserDTO> userDTOS = userService.getUsers();
@@ -38,6 +45,15 @@ public class UserController {
         return ResponseEntity.ok(restResponse);
     }
 
+    /**
+     * @description función controladora encargada de almacenar y actualizar un usuario del aplicativo
+     * @author Luis Hernandez
+     * @date(26/12/2022)
+     * @param userDTO
+     * @param errors
+     * @return ResponseEntity
+     * @see RestResponse
+     */
     @PostMapping
     public ResponseEntity<RestResponse> saveUser(@Valid @RequestBody UserDTO userDTO, Errors errors) {
         if(errors.hasErrors()) {

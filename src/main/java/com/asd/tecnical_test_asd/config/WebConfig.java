@@ -21,9 +21,16 @@ import java.util.List;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages ="com.konecta.autshedule.controller")
+//@ComponentScan(basePackages ="com.konecta.autshedule.controller")
 public class WebConfig implements WebMvcConfigurer {
 
+	/**
+	 * @description función encargada de agregar el encabezado de CORS
+	 * @author Luis Hernandez
+	 * @date(26/12/2022)
+	 * @param registry
+	 * @see <a href = "https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS" /> Cross-Origin Resource Sharing (CORS) </a>
+	 */
 	@Override
     public void addCorsMappings(CorsRegistry registry) {
 		CorsRegistration cors = registry.addMapping("/**");

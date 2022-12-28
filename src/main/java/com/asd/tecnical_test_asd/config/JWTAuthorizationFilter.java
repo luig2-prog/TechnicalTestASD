@@ -31,6 +31,12 @@ import java.util.regex.Pattern;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+/**
+ * Esta clase contiene los atributos y metodos de un empleado
+ * @author Luis Hernandez
+ * @version 1.0
+ * @see OncePerRequestFilter
+ */
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
 	private static final String AUTORIZATION = "Authorization";
@@ -41,10 +47,15 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 	private static final Logger log = LoggerFactory.getLogger(JWTAuthorizationFilter.class);
 
 	/**
-	 * @date(24/01/2022)
-	 * @author Carolina Arias
-	 * @description función encargada de validar el token
-	 **/
+	 * @description función encargada de hacer un filtro por donde pasan todas las peticiones HTTP
+	 * @author Luis Hernandez
+	 * @date(26/12/2022)
+	 * @param request
+	 * @param response
+	 * @param filterChain
+	 * @throws ServletException
+	 * @throws IOException
+	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 		filterChain.doFilter(request, response);
@@ -99,6 +110,13 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 //		}
 	}
 
+	/**
+	 * @description función encargada de decodificar el token, se valida si es valido el token
+	 * @author Luis Hernandez
+	 * @date(26/12/2022)
+	 * @param request
+	 * @return Claims jwt
+	 */
 	private Claims validateToken(HttpServletRequest request) {
 		try {
 			String jwtToken = request.getHeader(HEADER).replace(PREFIX, "");
@@ -110,6 +128,12 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 		}
 	}
 
+	/**
+	 * @description función encargada de logear al usuario
+	 * @author Luis Hernandez
+	 * @date(26/12/2022)
+	 * @param token
+	 */
 	private void authUser(Claims token) {
 		String username = token.getSubject();
 		List<String> roles = (List<String>) token.get("authorities");

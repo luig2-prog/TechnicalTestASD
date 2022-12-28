@@ -25,6 +25,13 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private ModelMapper modelMapper;
 
+    /**
+     * @description función de servicio encargada para comunicarse con la capa de
+     * repositorio y obtener todos los usuarios
+     * @author Luis Hernandez
+     * @date(26/12/2022)
+     * @return List<UserDTO>
+     */
     @Override
     public List<UserDTO> getUsers() {
         List<User> users = userRepository.findAll();
@@ -39,6 +46,14 @@ public class UserServiceImpl implements UserService{
                 .collect(Collectors.toList());
     }
 
+    /**
+     * @description función de servicio encargada para comunicarse con la capa de
+     * repositorio y almacenar o actualizar un usuario
+     * @author Luis Hernandez
+     * @date(26/12/2022)
+     * @param userDTO
+     * @return UserDTO
+     */
     @Override
     public UserDTO save(UserDTO userDTO) {
         logger.info("Todooo: {}" ,usernameExist(userDTO.getUsername()));
@@ -61,6 +76,14 @@ public class UserServiceImpl implements UserService{
         return userDTO;
     }
 
+    /**
+     * @description función de servicio encargada para comunicarse con la capa de
+     * repositorio y validar el nombre de usuario ya existe en la base de datos
+     * @author Luis Hernandez
+     * @date(26/12/2022)
+     * @param username
+     * @return exist
+     */
     private boolean usernameExist(String username) {
         boolean exist = false;
         User user = userRepository.findByUsername(username);

@@ -27,6 +27,13 @@ public class FixedAssetController {
     @Autowired
     FixedAssetService fixedAssetsService;
 
+    /**
+     * @description función encargada de pedir y retornar la información de los activos fijos de la empresa
+     * @author Luis Hernandez
+     * @date(26/12/2022)
+     * @return ResponseEntity
+     * @see RestResponse
+     */
     @GetMapping
     public ResponseEntity<RestResponse> getFixedAssets() {
         List<FixedAssetDTO> fixedAssetDTOS = fixedAssetsService.getFixedAssets();
@@ -39,6 +46,15 @@ public class FixedAssetController {
         return ResponseEntity.ok(restResponse);
     }
 
+    /**
+     * @description función controladora encargada de almacenar y actualizar un activo fijo
+     * @author Luis Hernandez
+     * @date(26/12/2022)
+     * @param fixedAssetDTO
+     * @param errors
+     * @return ResponseEntity
+     * @see RestResponse
+     */
     @PostMapping
     public ResponseEntity<RestResponse> saveFixedAsset(@Valid @RequestBody FixedAssetDTO fixedAssetDTO, Errors errors) {
         if(errors.hasErrors()) {
@@ -59,6 +75,16 @@ public class FixedAssetController {
         return ResponseEntity.ok(restResponse);
     }
 
+    /**
+     * @description función controladora encargada de buscar y retornar la información de un
+     * activo fijo, pasando como parametro el tipo, serial o fecha de compra
+     * @author Luis Hernandez
+     * @date(26/12/2022)
+     * @param typeDateOrSerialDTO
+     * @param errors
+     * @return ResponseEntity
+     * @see RestResponse
+     */
     @GetMapping("/search")
     public ResponseEntity<RestResponse> getByTypeDateOrSerial(@Valid @RequestBody TypeDateOrSerialDTO typeDateOrSerialDTO, Errors errors) {
         if(errors.hasErrors()) {

@@ -9,6 +9,16 @@ import java.util.Date;
 import java.util.List;
 
 public interface FixedAssetRepository extends JpaRepository<FixedAsset, Long> {
+    /**
+     * @description función encargada de hacer la consulta personalizada a la base de datos
+     * Se busca en base de datos los arctivos por tipo, fecha de compra o serial
+     * @author Luis Hernandez
+     * @date(26/12/2022)
+     * @param assetType
+     * @param dateBuy
+     * @param assetSerial
+     * @return List<FixedAsset>
+     */
     @Query("select f from FixedAsset f where f.assetType = :assetType or f.dateBuy = :dateBuy or f.assetType = :assetSerial")
     List<FixedAsset> getByTypeDateOrSerial(
             @Param("assetType") String assetType,
