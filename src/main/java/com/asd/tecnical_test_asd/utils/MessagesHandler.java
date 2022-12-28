@@ -16,6 +16,7 @@ public class MessagesHandler {
 	public static final String RECORDS_NOT_SPECIAL_SCHEDULE = "No hay registros almacenados";
 	public static final String RECORDS_STORED = "Registro Almacenado Correctamente.";
 	public static final String RECORDS_NOT_STORED = "Registro No Almacenado.";
+	public static final String RECORDS_NOT_STORED_USER_EXIST = "El nombre de usuario ya se encuentra en uso";
 	public static final String GENERAL_ERROR = "ERROR GENERAL.";
 	public static final String RECORDS_UPDATE = "Registro Actualizado Correctamente.";
 	public static final String RECORDS_DELECTED = "Registro Actualizado Correctamente.";
@@ -34,6 +35,7 @@ public class MessagesHandler {
 	public static final String TOKEN = "Token invalido";
 	public static final String INPUT_VALIDATION = "ERROR: ";
 	public static final String VALIDATION_ERROR_MESSAGE = "ERROR DE VALIDACIÓN: {}";
+	public static final String VALIDATION_ERROR_REQUEST_MESSAGE = "Ingrese los datos de manera correcta";
 	public static final String UNAUTHORIZED = "Unauthorized";
 
 	public static final int OK = 200;

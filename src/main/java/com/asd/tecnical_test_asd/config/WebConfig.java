@@ -1,5 +1,6 @@
 package com.asd.tecnical_test_asd.config;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -27,21 +28,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
 		CorsRegistration cors = registry.addMapping("/**");
 		cors.allowedOrigins(
-				"https://asistenciawebv2-dev.grupokonecta.co:5005/",
-				"https://asistenciawebv2.grupokonecta.co:5005/",
-				"https://asistenciawebv2-dev.grupokonecta.local/",
-				"https://asistenciawebv2.grupokonecta.local/",
-				"https://asistenciawebv2-dev.grupokonecta.co/",
-				"https://asistenciawebv2.grupokonecta.co/",
-				"https://asistenciawebv2.grupokonecta.co:8443/",
-				"https://asistenciawebv2-dev.grupokonecta.co:5005",
-				"https://asistenciawebv2.grupokonecta.co:5005",
-				"https://asistenciawebv2-dev.grupokonecta.local",
-				"https://asistenciawebv2.grupokonecta.local",
-				"https://asistenciawebv2-dev.grupokonecta.co",
-				"https://asistenciawebv2.grupokonecta.co",
-				"https://asistenciawebv2.grupokonecta.co:8443",
-				"https://asistencia.webv2.allus.com.co/",
 				"http://localhost:4200",
 				"http://127.0.0.1:4200",
 				"http://localhost:5500"
@@ -51,9 +37,15 @@ public class WebConfig implements WebMvcConfigurer {
 		;
     }
 
+
 	@Override
 	public void configureViewResolvers(ViewResolverRegistry registry) {
 		registry.jsp("/WEB-INF/views/", ".jsp");
+	}
+
+	@Bean
+	public ModelMapper modelMapper() {
+		return new ModelMapper();
 	}
 
 	@Bean

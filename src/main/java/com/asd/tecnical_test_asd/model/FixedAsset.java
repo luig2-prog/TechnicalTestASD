@@ -9,7 +9,6 @@ public class FixedAsset {
     @SequenceGenerator(initialValue = 1, name="idGenFixedAsset", sequenceName = "fixedAssetSEQ", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idGenFixedAsset")
     private Long id;
-
     private String assetName;//    nombre
     private String description;//descripción,
     private String assetType;//tipo,
@@ -21,6 +20,28 @@ public class FixedAsset {
     private int large;// largo,
     private int buyValue;// valor compra,
     private Date dateBuy;// fecha de compra.
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "area_id")
+    private Area area;
+
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Long getId() {
         return id;

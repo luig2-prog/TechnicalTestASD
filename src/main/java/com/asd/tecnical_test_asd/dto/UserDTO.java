@@ -1,5 +1,11 @@
 package com.asd.tecnical_test_asd.dto;
 
-public class UserDTO {
+import com.asd.tecnical_test_asd.model.Role;
+import lombok.Data;
 
+@Data
+public class UserDTO {
+    private String username;
+    private String password;
+    private Role role;
 }

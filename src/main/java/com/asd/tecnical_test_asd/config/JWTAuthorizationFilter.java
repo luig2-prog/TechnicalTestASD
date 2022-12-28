@@ -47,55 +47,56 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 	 **/
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+		filterChain.doFilter(request, response);
+//		final String regex = "([a-z/]+api/user/login|[a-z/]+api/user/my-ip)";
+//		final String servletPath = request.getServletPath();
+//		final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
+//		final Matcher matcher = pattern.matcher(servletPath);
+//		RestResponse restResponse;
+//		logger.info("Ok pus");
+//		if(matcher.find()) {
+//
 
-		final String regex = "([a-z/]+api/user/login|[a-z/]+api/user/my-ip)";
-		final String servletPath = request.getServletPath();
-		final Pattern pattern = Pattern.compile(regex, Pattern.MULTILINE);
-		final Matcher matcher = pattern.matcher(servletPath);
-		RestResponse restResponse;
-		logger.info("Ok pus");
-		if(matcher.find()) {
-			filterChain.doFilter(request, response);
-		} else {
-			String authorizationHeader = request.getHeader(AUTORIZATION);
-			if(authorizationHeader != null && authorizationHeader.startsWith(PREFIX)) {
-				try {
-					Claims token = validateToken(request);
-					log.info("TOKEN: {}", token);
-					log.info("token.get(\"ip\"): {}",token.get("ip"));
-					if(token.get("ip").equals(request.getRemoteAddr())) {
-						authUser(token);
-						filterChain.doFilter(request, response);
-					} else {
-						log.info("No se permitén peticiones de dos ips distintas");
-						response.setStatus(HttpServletResponse.SC_OK);
-						restResponse = new RestResponse(HttpStatus.FORBIDDEN.value(), MessagesHandler.UNAUTHORIZED, null);
-						response.setContentType(APPLICATION_JSON_VALUE);
-						new ObjectMapper().writeValue(response.getOutputStream(), restResponse);
-					}
-				} catch (ExpiredJwtException | SignatureException | MalformedJwtException |
-						UnsupportedJwtException | IllegalArgumentException e) {
-					logger.info(e);
-					log.info("Error token, message: {} - class: {}", e.getMessage(), e.getClass());
-					response.setStatus(HttpServletResponse.SC_OK);
-					restResponse = new RestResponse(HttpStatus.FORBIDDEN.value(), MessagesHandler.UNAUTHORIZED, null);
-					response.setContentType(APPLICATION_JSON_VALUE);
-					new ObjectMapper().writeValue(response.getOutputStream(), restResponse);
-				} catch (Exception e) {
-					logger.info(e);
-					log.warn("Error general: {} - class {}", e.getMessage(),e.getClass());
-					response.setStatus(HttpServletResponse.SC_OK);
-					restResponse = new RestResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessagesHandler.UNAUTHORIZED, null);
-					response.setContentType(APPLICATION_JSON_VALUE);
-					new ObjectMapper().writeValue(response.getOutputStream(), restResponse);
-				}
-			} else {
-				response.setStatus(HttpServletResponse.SC_OK);
-				restResponse = new RestResponse(HttpStatus.FORBIDDEN.value(), MessagesHandler.UNAUTHORIZED, null);
-				response.setContentType(APPLICATION_JSON_VALUE);
-				new ObjectMapper().writeValue(response.getOutputStream(), restResponse);
-			}
-		}
+//		} else {
+//			String authorizationHeader = request.getHeader(AUTORIZATION);
+//			if(authorizationHeader != null && authorizationHeader.startsWith(PREFIX)) {
+//				try {
+//					Claims token = validateToken(request);
+//					log.info("TOKEN: {}", token);
+//					log.info("token.get(\"ip\"): {}",token.get("ip"));
+//					if(token.get("ip").equals(request.getRemoteAddr())) {
+//						authUser(token);
+//						filterChain.doFilter(request, response);
+//					} else {
+//						log.info("No se permitén peticiones de dos ips distintas");
+//						response.setStatus(HttpServletResponse.SC_OK);
+//						restResponse = new RestResponse(HttpStatus.FORBIDDEN.value(), MessagesHandler.UNAUTHORIZED, null);
+//						response.setContentType(APPLICATION_JSON_VALUE);
+//						new ObjectMapper().writeValue(response.getOutputStream(), restResponse);
+//					}
+//				} catch (ExpiredJwtException | SignatureException | MalformedJwtException |
+//						UnsupportedJwtException | IllegalArgumentException e) {
+//					logger.info(e);
+//					log.info("Error token, message: {} - class: {}", e.getMessage(), e.getClass());
+//					response.setStatus(HttpServletResponse.SC_OK);
+//					restResponse = new RestResponse(HttpStatus.FORBIDDEN.value(), MessagesHandler.UNAUTHORIZED, null);
+//					response.setContentType(APPLICATION_JSON_VALUE);
+//					new ObjectMapper().writeValue(response.getOutputStream(), restResponse);
+//				} catch (Exception e) {
+//					logger.info(e);
+//					log.warn("Error general: {} - class {}", e.getMessage(),e.getClass());
+//					response.setStatus(HttpServletResponse.SC_OK);
+//					restResponse = new RestResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), MessagesHandler.UNAUTHORIZED, null);
+//					response.setContentType(APPLICATION_JSON_VALUE);
+//					new ObjectMapper().writeValue(response.getOutputStream(), restResponse);
+//				}
+//			} else {
+//				response.setStatus(HttpServletResponse.SC_OK);
+//				restResponse = new RestResponse(HttpStatus.FORBIDDEN.value(), MessagesHandler.UNAUTHORIZED, null);
+//				response.setContentType(APPLICATION_JSON_VALUE);
+//				new ObjectMapper().writeValue(response.getOutputStream(), restResponse);
+//			}
+//		}
 	}
 
 	private Claims validateToken(HttpServletRequest request) {

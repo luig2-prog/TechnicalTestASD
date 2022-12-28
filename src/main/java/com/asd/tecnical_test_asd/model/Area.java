@@ -11,6 +11,17 @@ public class Area {
     private Long id;
     private String name;
     private int postalCode;
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
 
     public Long getId() {
         return id;

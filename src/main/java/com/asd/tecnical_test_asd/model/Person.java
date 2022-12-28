@@ -15,6 +15,17 @@ public class Person {
     private String email;
     private String address;
     private Date birthDay;
+    @ManyToOne
+    @JoinColumn(name = "area_id")
+    private Area area;
+
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
+    }
 
     public Long getId() {
         return id;
