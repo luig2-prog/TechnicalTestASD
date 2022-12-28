@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/user")
+@RequestMapping("/api")
 public class UserController {
 
     private static final Logger loggerFactory = LoggerFactory.getLogger(UserController.class);
