@@ -2,16 +2,12 @@ package com.asd.tecnical_test_asd.exeption;
 
 import com.asd.tecnical_test_asd.dto.RestResponse;
 import com.asd.tecnical_test_asd.utils.MessagesHandler;
-import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import io.jsonwebtoken.JwtException;
-import org.hibernate.engine.jdbc.spi.SqlExceptionHelper;
-import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-//import org.springframework.security.access.AccessDeniedException;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;

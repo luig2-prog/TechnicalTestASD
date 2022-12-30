@@ -62,6 +62,11 @@ public class AreaServiceImpl implements AreaService {
 
     @Override
     public AreaDTO findByName(String name) {
-        return null;
+        Area area = areaRepository.findByName(name);
+        AreaDTO areaDTO = null;
+        if (area != null) {
+            areaDTO = modelMapper.map(area, AreaDTO.class);
+        }
+        return areaDTO;
     }
 }
