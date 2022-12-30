@@ -8,4 +8,6 @@ import java.util.List;
 public interface UserService {
     List<UserDTO> getUsers();
     UserDTO save(UserDTO userDTO);
+    UserDTO loggin(String username, String password);
+    UserDTO findByUsername(String username);
 }

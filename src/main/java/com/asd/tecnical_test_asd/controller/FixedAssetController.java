@@ -85,7 +85,7 @@ public class FixedAssetController {
      * @return ResponseEntity
      * @see RestResponse
      */
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ResponseEntity<RestResponse> getByTypeDateOrSerial(@Valid @RequestBody TypeDateOrSerialDTO typeDateOrSerialDTO, Errors errors) {
         if(errors.hasErrors()) {
             loggerFactory.info(MessagesHandler.VALIDATION_ERROR_MESSAGE, errors.getAllErrors());

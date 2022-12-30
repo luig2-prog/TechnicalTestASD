@@ -38,7 +38,7 @@ public class FixedAssetServiceImpl implements FixedAssetService {
         if(fixedAssets.isEmpty()) {
             throw new CustomException(
                     HttpStatus.NOT_FOUND,
-                    MessagesHandler.RECORDS_NOT_LISTED,
+                    "No hay activos fijos registrados",
                     new Throwable("Exception custom")
             );
         }
@@ -57,7 +57,6 @@ public class FixedAssetServiceImpl implements FixedAssetService {
     @Override
     public FixedAssetDTO save(FixedAssetDTO fixedAssetDTO) {
         FixedAsset fixedAsset = modelMapper.map(fixedAssetDTO, FixedAsset.class);
-        logger.info("VALIDATION USER: {}", fixedAsset.getUser().getUsername());
         FixedAsset fixedAssetSaved = fixedAssetRepository.save(fixedAsset);
         if(fixedAssetSaved == null) {
             throw new CustomException(
@@ -84,10 +83,10 @@ public class FixedAssetServiceImpl implements FixedAssetService {
                 typeDateOrSerialDTO.getDateBuy(),
                 typeDateOrSerialDTO.getAssetSerial()
         );
-        if(fixedAssetSearch == null) {
+        if(fixedAssetSearch.isEmpty()) {
             throw new CustomException(
                     HttpStatus.NOT_FOUND,
-                    MessagesHandler.RECORDS_NOT_LISTED,
+                    "No hay activos fijos con los parametros buscados",
                     new Throwable("Exception custom")
             );
         }

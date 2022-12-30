@@ -43,45 +43,41 @@ public class WebConfig implements WebMvcConfigurer {
 				.allowCredentials(true).maxAge(3600)
 		;
     }
-
-
-	@Override
-	public void configureViewResolvers(ViewResolverRegistry registry) {
-		registry.jsp("/WEB-INF/views/", ".jsp");
-	}
-
-	@Bean
-	public ModelMapper modelMapper() {
-		return new ModelMapper();
-	}
-
-	@Bean
-	public MultipartResolver multiPartResolver() {
-		return new StandardServletMultipartResolver();
-	}
-
-	///Metodo para procesar la informacion en Json
-	@Bean
-	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
-		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
-				.indentOutput(true);
-	    return new MappingJackson2HttpMessageConverter(builder.build());
-	}
-
-
-	///
-	@Override
-	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		converters.add(mappingJackson2HttpMessageConverter());
-	    converters.add(new ResourceHttpMessageConverter());
-    }
-
-
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
-		registry.addResourceHandler("/img/**").addResourceLocations("/static/img/");
-		registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
-	}
+//
+//
+//	@Override
+//	public void configureViewResolvers(ViewResolverRegistry registry) {
+//		registry.jsp("/WEB-INF/views/", ".jsp");
+//	}
+//
+//
+//	@Bean
+//	public MultipartResolver multiPartResolver() {
+//		return new StandardServletMultipartResolver();
+//	}
+//
+//	///Metodo para procesar la informacion en Json
+//	@Bean
+//	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter() {
+//		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder()
+//				.indentOutput(true);
+//	    return new MappingJackson2HttpMessageConverter(builder.build());
+//	}
+//
+//
+//	///
+//	@Override
+//	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//		converters.add(mappingJackson2HttpMessageConverter());
+//	    converters.add(new ResourceHttpMessageConverter());
+//    }
+//
+//
+//	@Override
+//	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//		registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
+//		registry.addResourceHandler("/img/**").addResourceLocations("/static/img/");
+//		registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
+//	}
 
 }

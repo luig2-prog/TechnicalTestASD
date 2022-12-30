@@ -10,7 +10,6 @@ public class Area {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "idGenArea")
     private Long id;
     private String name;
-    private int postalCode;
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
@@ -39,11 +38,4 @@ public class Area {
         this.name = name;
     }
 
-    public int getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
-    }
 }

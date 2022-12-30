@@ -19,7 +19,7 @@ public interface FixedAssetRepository extends JpaRepository<FixedAsset, Long> {
      * @param assetSerial
      * @return List<FixedAsset>
      */
-    @Query("select f from FixedAsset f where f.assetType = :assetType or f.dateBuy = :dateBuy or f.assetType = :assetSerial")
+    @Query("select f from FixedAsset f where f.assetType = :assetType or f.dateBuy = :dateBuy or f.assetSerial = :assetSerial")
     List<FixedAsset> getByTypeDateOrSerial(
             @Param("assetType") String assetType,
             @Param("dateBuy") Date dateBuy,
